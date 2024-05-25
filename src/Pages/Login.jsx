@@ -6,16 +6,44 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Image from "../Assets/PharaohStocks.jpg";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { blue } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import SchoolIcon from "@mui/icons-material/School";
 import { useUserAuth } from "../UserAuthContext";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../Redux/loginReducer";
+import { styled } from "@mui/system";
+import { GiEgyptianSphinx } from "react-icons/gi";
 
 const defaultTheme = createTheme();
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  "& label.Mui-focused": {
+    color: "gold",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "gold",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "white",
+    },
+    "&:hover fieldset": {
+      borderColor: "white",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "gold",
+    },
+    "& input": {
+      color: "white",
+    },
+  },
+  "& .MuiInputLabel-root": {
+    color: "white",
+  },
+}));
 
 export default function Login() {
   const { logIn } = useUserAuth();
@@ -61,7 +89,11 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: "100vh", overflow: "hidden" }}
+      >
         <CssBaseline />
         <Grid
           item
@@ -69,18 +101,28 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
+            backgroundImage: `url(${Image})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
-                ? t.palette.grey[50]
+                ? t.palette.grey[900]
                 : t.palette.grey[900],
-            // backgroundSize:"cover",
             backgroundPosition: "center",
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={6}
+          sx={{ backgroundColor: "#212121" }}
+          square
+        >
           <Box
             sx={{
+              backgroundColor: "#212121",
               my: 8,
               mx: 4,
               display: "flex",
@@ -88,10 +130,10 @@ export default function Login() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: blue[500] }}>
-              <SchoolIcon />
+            <Avatar sx={{ m: 1, bgcolor: "gold" }}>
+              <GiEgyptianSphinx color="black" />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography sx={{ color: "white" }} component="h1" variant="h5">
               Login
             </Typography>
             <Box
@@ -100,7 +142,7 @@ export default function Login() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              <TextField
+              <CustomTextField
                 margin="normal"
                 required
                 fullWidth
@@ -112,13 +154,8 @@ export default function Login() {
                 value={email}
                 onChange={handleEmailChange}
                 error={error}
-                // InputProps={{
-                //   endAdornment: (
-                //     <InputAdornment position="end">@eng.asu.edu.eg</InputAdornment>
-                //   ),
-                // }}
               />
-              <TextField
+              <CustomTextField
                 margin="normal"
                 required
                 fullWidth
@@ -132,7 +169,7 @@ export default function Login() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, bgcolor: blue[500] }}
+                sx={{ mt: 3, mb: 2, bgcolor: "gold", color: "black" }}
               >
                 Sign In
               </Button>

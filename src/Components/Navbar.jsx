@@ -53,8 +53,8 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  height: 15vh;
-  position: sticky;
+  height: 10vh;
+  position: relative;
   top: 0;
   transition: 0.3s ease-in-out;
   background-color: none;
