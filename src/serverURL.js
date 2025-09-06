@@ -1,3 +1,3 @@
-const serverUrl = "http://localhost:5555";
+const serverUrl = "https://konecta-demo.onrender.com";
 
 module.exports = serverUrl;
